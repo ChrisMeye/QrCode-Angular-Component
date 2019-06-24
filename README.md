@@ -18,22 +18,22 @@ Insert the import in the app.module.ts -> in the example it could be like:
 
 
 >@NgModule({  
->  declarations: [  
->    AppComponent,  
->    ...,  
->    QrCodeGeneratorComponent  
->  ],
+>     declarations: [  
+>       AppComponent,  
+>       ...,  
+>       QrCodeGeneratorComponent  
+>     ],
   
   
 Last you have to insert in angular.json in script section the qrcode library: (you can change the folder of the library ofc)
 
 >"styles": [  
->      "src/styles.css"  
->    ],  
->    "scripts": [  
->      ...,  
->      "./src/app/QrCode-Angular-Component/qrcode.js"  
->    ]  
+>       "src/styles.css"  
+>     ],  
+>     "scripts": [  
+>       ...,  
+>       "./src/app/QrCode-Angular-Component/qrcode.js"  
+>     ]  
 >  },
 
 
