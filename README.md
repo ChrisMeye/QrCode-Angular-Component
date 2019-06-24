@@ -17,13 +17,9 @@ Insert the import in the app.module.ts -> in the example it could be like:
 >
 >@NgModule({
 >  declarations: [
->
 >    AppComponent,
->
 >    ...,
->
 >    QrCodeGeneratorComponent
->
 >  ],
   
   
@@ -51,10 +47,10 @@ Possible parameters for settings object are:
 >       "bgColor": "#fff",
 >       "size": 200,
 >       "margin": 20,
->	"logo":"/assets/images/icons/favi.png",
->        "border": 10,
->        "innerCircleRadius": .4,
->        "imageWidth": 2
+>       "logo":"/assets/images/icons/favi.png",
+>       "border": 10,
+>       "innerCircleRadius": .4,
+>       "imageWidth": 2
 >      }
 
 ### Screenshots & User guide
