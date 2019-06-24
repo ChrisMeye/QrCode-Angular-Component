@@ -30,14 +30,14 @@ export class QrCodeGeneratorComponent {
       "container": null,
       "ctx": null,
       "settings": {
-        "fgColor": "#d2892b",
+        "fgColor": "rgb(61, 95, 240)",
         "bgColor": "#fff",
-        "size": 128,
-        "padding": 0,
+        "size": 200,
+        "margin": 20,
+		"logo":"http://localhost/sysr/assets/images/icons/favi.png",
         "border": 10,
-        "logo": "/assets/images/icons/beer-call.png",
-        "logoScale": .2,
-        "imgScale": 1.6
+        "innerCircleRadius": .4,
+        "imageWidth": 2
       } };
 
       if(this.qrcodeSettings){
@@ -64,7 +64,7 @@ export class QrCodeGeneratorComponent {
     this.qrCode.canvas = this.qrCode.container.getElementsByTagName("CANVAS")[0];
     this.qrCode.ctx = this.qrCode.canvas.getContext('2d');
 
-    container.style.padding = settings.padding + "px";
+    container.style.margin = settings.margin + "px";
     container.style.width = settings.size + "px";
     container.style.height = settings.size + "px";
     if(settings.border > 0) {
@@ -83,17 +83,17 @@ export class QrCodeGeneratorComponent {
     const base_image = new Image();
     const context = this.qrCode.ctx;
 
-      const logoScale = settings.size * settings.logoScale;
+      const innerCircleRadius = settings.size * (settings.innerCircleRadius / 2);
 
       context.fillStyle = settings.bgColor;
 
       base_image.src = settings.logo;
       base_image.onload = () => {
         context.beginPath();
-        context.arc(settings.size/2, settings.size/2, logoScale, 0, 2 * Math.PI);
+        context.arc(settings.size/2, settings.size/2, innerCircleRadius, 0, 2 * Math.PI);
         context.fill();
-        const imgPos = settings.size/2 - logoScale*settings.imgScale/2;
-        context.drawImage(base_image, imgPos, imgPos, logoScale * settings.imgScale, logoScale * settings.imgScale);
+        const imgPos = settings.size/2 - innerCircleRadius*settings.imageWidth/2;
+        context.drawImage(base_image, imgPos, imgPos, innerCircleRadius * settings.imageWidth, innerCircleRadius * settings.imageWidth);
 
         const imageStr = this.qrCode.canvas.toDataURL();
         container.getElementsByTagName("IMG")[0].src = imageStr;
