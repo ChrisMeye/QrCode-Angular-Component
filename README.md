@@ -1,14 +1,8 @@
-# QrCode Angular Component with images
+# QrCode Angular Component with images (not finished work in progress)
 <img src="readme_images/example 2.png" alt="logo" width="200px" align="right"/>
 
 ### Description
 This is a simple component you can include in your project which helps you with dealing the qrcode library. Further you are able to put a logo inside the qrcode and easily change settings for your needs.
-
-### Features
-
-
-### The idea is:
-his "spending tracker" is created to provide a detailed overview of your cash flow. The word "track" is important here, thanks to "openstreetmapapi" combined with leaflet, you can indicate where you carried out the transaction - worldwide. This gives you the opportunity to check where you spend your money most and maybe prevent it in the future. You spend some money? - You get a nice insult! This should motivate you to save your money.
 
 
 ## Getting started
@@ -19,25 +13,25 @@ Copy the component in the module you need. Usually it's Angular_Prohect->src->ap
 
 
 Insert the import in the app.module.ts -> in the example it could be like:
-import { QrCodeGeneratorComponent } from './QrCode-Angular-Component/qr-code-generator.component';
-
-@NgModule({
-  declarations: [
-    AppComponent,
-    ...,
-    QrCodeGeneratorComponent
-  ],
+>import { QrCodeGeneratorComponent } from './QrCode-Angular-Component/qr-code-generator.component';
+>
+>@NgModule({
+>  declarations: [
+>    AppComponent,
+>    ...,
+>    QrCodeGeneratorComponent
+>  ],
   
   
 Last you have to insert in angular.json in script section the qrcode library: (you can change the folder of the library ofc)
-"styles": [
-      "src/styles.css"
-    ],
-    "scripts": [
-      ...,
-      "./src/app/QrCode-Angular-Component/qrcode.js"
-    ]
-  },
+>"styles": [
+>      "src/styles.css"
+>    ],
+>    "scripts": [
+>      ...,
+>      "./src/app/QrCode-Angular-Component/qrcode.js"
+>    ]
+>  },
 
 
 Thats it! you are ready to go
