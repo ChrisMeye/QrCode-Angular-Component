@@ -13,6 +13,7 @@ Copy the component in the module you need. Usually it's Angular_Prohect->src->ap
 
 
 Insert the import in the app.module.ts -> in the example it could be like:
+
 >import { QrCodeGeneratorComponent } from './QrCode-Angular-Component/qr-code-generator.component';
 >
 >@NgModule({
@@ -24,6 +25,7 @@ Insert the import in the app.module.ts -> in the example it could be like:
   
   
 Last you have to insert in angular.json in script section the qrcode library: (you can change the folder of the library ofc)
+
 >"styles": [
 >      "src/styles.css"
 >    ],
@@ -39,6 +41,7 @@ Thats it! you are ready to go
 
 ### Usage
 You can use the component like every other component:
+
 <app-qr-code-generator [qrcodeString]="http://www.google.com" [qrcodeSettings]="{'fgColor': 'red', 'l'}"></app-qr-code-generator>
 
 Possible parameters for settings object are:
@@ -52,6 +55,7 @@ Possible parameters for settings object are:
 >       "innerCircleRadius": .4,
 >       "imageWidth": 2
 >      }
+
 
 ### Screenshots & User guide
 
