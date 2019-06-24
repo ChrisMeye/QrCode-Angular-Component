@@ -14,25 +14,26 @@ Copy the component in the module you need. Usually it's Angular_Prohect->src->ap
 
 Insert the import in the app.module.ts -> in the example it could be like:
 
->import { QrCodeGeneratorComponent } from './QrCode-Angular-Component/qr-code-generator.component';
->
->@NgModule({
->  declarations: [
->    AppComponent,
->    ...,
->    QrCodeGeneratorComponent
+>import { QrCodeGeneratorComponent } from './QrCode-Angular-Component/qr-code-generator.component';  
+
+
+>@NgModule({  
+>  declarations: [  
+>    AppComponent,  
+>    ...,  
+>    QrCodeGeneratorComponent  
 >  ],
   
   
 Last you have to insert in angular.json in script section the qrcode library: (you can change the folder of the library ofc)
 
->"styles": [
->      "src/styles.css"
->    ],
->    "scripts": [
->      ...,
->      "./src/app/QrCode-Angular-Component/qrcode.js"
->    ]
+>"styles": [  
+>      "src/styles.css"  
+>    ],  
+>    "scripts": [  
+>      ...,  
+>      "./src/app/QrCode-Angular-Component/qrcode.js"  
+>    ]  
 >  },
 
 
