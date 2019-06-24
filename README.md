@@ -1,5 +1,5 @@
 # QrCode Angular Component with images
-<img src="images/sLogo.png" alt="logo" width="200px" align="right"/>
+<img src="readme_images/example 2.png" alt="logo" width="200px" align="right"/>
 
 ### Description
 This is a simple component you can include in your project which helps you with dealing the qrcode library. Further you are able to put a logo inside the qrcode and easily change settings for your needs.
