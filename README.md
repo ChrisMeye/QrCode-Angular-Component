@@ -42,7 +42,7 @@ Thats it! you are ready to go
 ### Usage
 You can use the component like every other component:
 
-<app-qr-code-generator [qrcodeString]="http://www.google.com" [qrcodeSettings]="{'fgColor': 'red', 'l'}"></app-qr-code-generator>
+<app-qr-code-generator [qrcodeString]="virtual-love-lock.com" [qrcodeSettings]="{'fgColor': 'red', 'l'}"></app-qr-code-generator>
 
 Possible parameters for settings object are:
 >     "settings": {
