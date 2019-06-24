@@ -28,6 +28,18 @@ Last you have to insert in angular.json in script section the qrcode library: (y
 Thats it! you are ready to go
 
 You can use the component like every other component:
-<app-qr-code-generator [qrcodeString]="http://www.google.com"></app-qr-code-generator>
+<app-qr-code-generator [qrcodeString]="http://www.google.com" [qrcodeSettings]="{'fgColor': 'red', 'l'}"></app-qr-code-generator>
 
-Possible parameters are:
+Possible parameters for settings object are:
+      "settings": {
+        "fgColor": "rgb(61, 95, 240)",
+        "bgColor": "#fff",
+        "size": 200,
+        "margin": 20,
+		    "logo":"/assets/images/icons/favi.png",
+        "border": 10,
+        "innerCircleRadius": .4,
+        "imageWidth": 2
+      }
+      
+    
