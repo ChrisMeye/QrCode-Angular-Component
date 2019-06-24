@@ -30,15 +30,16 @@ export class QrCodeGeneratorComponent {
       "container": null,
       "ctx": null,
       "settings": {
-        "fgColor": "rgb(61, 95, 240)",
-        "bgColor": "#fff",
+        "fgColor": "rgb(33, 161, 138)",
+        "bgColor": "#333",
         "size": 200,
         "margin": 20,
 		"logo":"http://localhost/sysr/assets/images/icons/favi.png",
         "border": 10,
         "innerCircleRadius": .4,
-        "imageWidth": 2
-      } };
+        "imageWidth": 1.8,
+        "type": "circle"
+		} };
 
       if(this.qrcodeSettings){
         this.qrCode.settings = Object.assign(this.qrCode.settings, this.qrcodeSettings);
@@ -58,7 +59,8 @@ export class QrCodeGeneratorComponent {
     	width: settings.size,
     	height: settings.size,
     	colorDark : settings.fgColor,
-    	colorLight : settings.bgColor
+    	colorLight : settings.bgColor,
+    	type : "circle"
     });
 
     this.qrCode.canvas = this.qrCode.container.getElementsByTagName("CANVAS")[0];
@@ -75,6 +77,9 @@ export class QrCodeGeneratorComponent {
     if(settings.logo) {
       this.mergeLogoInto( );
     }
+	if(settings.sharpness){
+	this.sharpen(this.qrCode.ctx, settings.size, settings.size, settings.sharpness);
+	}
   }
 
   private mergeLogoInto( ){
@@ -100,5 +105,56 @@ export class QrCodeGeneratorComponent {
       }
 
   }
+  
+  
+  
+private sharpen(ctx, w, h, mix) {
+	console.log(ctx, w, h, mix);
+    var x, sx, sy, r, g, b, a, dstOff, srcOff, wt, cx, cy, scy, scx,
+        weights = [0, -1, 0, -1, 5, -1, 0, -1, 0],
+        katet = Math.round(Math.sqrt(weights.length)),
+        half = (katet * 0.5) | 0,
+        dstData = ctx.createImageData(w, h),
+        dstBuff = dstData.data,
+        srcBuff = ctx.getImageData(0, 0, w, h).data,
+        y = h;
+
+    while (y--) {
+        x = w;
+        while (x--) {
+            sy = y;
+            sx = x;
+            dstOff = (y * w + x) * 4;
+            r = 0;
+            g = 0;
+            b = 0;
+            a = 0;
+
+            for (cy = 0; cy < katet; cy++) {
+                for (cx = 0; cx < katet; cx++) {
+                    scy = sy + cy - half;
+                    scx = sx + cx - half;
+
+                    if (scy >= 0 && scy < h && scx >= 0 && scx < w) {
+                        srcOff = (scy * w + scx) * 4;
+                        wt = weights[cy * katet + cx];
+
+                        r += srcBuff[srcOff] * wt;
+                        g += srcBuff[srcOff + 1] * wt;
+                        b += srcBuff[srcOff + 2] * wt;
+                        a += srcBuff[srcOff + 3] * wt;
+                    }
+                }
+            }
+
+            dstBuff[dstOff] = r * mix + srcBuff[dstOff] * (1 - mix);
+            dstBuff[dstOff + 1] = g * mix + srcBuff[dstOff + 1] * (1 - mix);
+            dstBuff[dstOff + 2] = b * mix + srcBuff[dstOff + 2] * (1 - mix);
+            dstBuff[dstOff + 3] = srcBuff[dstOff + 3];
+        }
+    }
+
+    ctx.putImageData(dstData, 0, 0);
+}
 
 }

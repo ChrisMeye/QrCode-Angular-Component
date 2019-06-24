@@ -180,6 +180,7 @@ var QRCode;
 		};
 
 		Drawing.prototype.draw = function (oQRCode) {
+			console.info(oQRCode);
 			var _htOption = this._htOption;
 			var _el = this._el;
 			var nCount = oQRCode.getModuleCount();
@@ -234,6 +235,7 @@ var QRCode;
 		 * @param {QRCode} oQRCode
 		 */
 		Drawing.prototype.draw = function (oQRCode) {
+			console.info(oQRCode);
             var _htOption = this._htOption;
             var _el = this._el;
 			var nCount = oQRCode.getModuleCount();
@@ -377,6 +379,7 @@ var QRCode;
             var _elImage = this._elImage;
             var _oContext = this._oContext;
             var _htOption = this._htOption;
+					console.info(oQRCode, _htOption);
 
 			var nCount = oQRCode.getModuleCount();
 			var nWidth = _htOption.width / nCount;
@@ -386,7 +389,10 @@ var QRCode;
 
 			_elImage.style.display = "none";
 			this.clear();
-
+			
+			_oContext.fillStyle = _htOption.colorLight;
+			_oContext.fillRect(0, 0, _htOption.width, _htOption.height);
+			
 			for (var row = 0; row < nCount; row++) {
 				for (var col = 0; col < nCount; col++) {
 					var bIsDark = oQRCode.isDark(row, col);
@@ -395,22 +401,32 @@ var QRCode;
 					_oContext.strokeStyle = bIsDark ? _htOption.colorDark : _htOption.colorLight;
 					_oContext.lineWidth = 1;
 					_oContext.fillStyle = bIsDark ? _htOption.colorDark : _htOption.colorLight;
-					_oContext.fillRect(nLeft, nTop, nWidth, nHeight);
+					
+					if(_htOption.type == "rect"){
+						_oContext.fillRect(nLeft, nTop, nWidth, nHeight);
+						// 안티 앨리어싱 방지 처리
+						_oContext.strokeRect(
+							Math.floor(nLeft) + 0.5,
+							Math.floor(nTop) + 0.5,
+							nRoundedWidth,
+							nRoundedHeight
+						);
 
-					// 안티 앨리어싱 방지 처리
-					_oContext.strokeRect(
-						Math.floor(nLeft) + 0.5,
-						Math.floor(nTop) + 0.5,
-						nRoundedWidth,
-						nRoundedHeight
-					);
-
-					_oContext.strokeRect(
-						Math.ceil(nLeft) - 0.5,
-						Math.ceil(nTop) - 0.5,
-						nRoundedWidth,
-						nRoundedHeight
-					);
+						_oContext.strokeRect(
+							Math.ceil(nLeft) - 0.5,
+							Math.ceil(nTop) - 0.5,
+							nRoundedWidth,
+							nRoundedHeight
+						);
+						
+					
+					}else if(_htOption.type == "circle" && bIsDark){
+						_oContext.beginPath();
+						_oContext.arc(Math.floor(nLeft) + nRoundedHeight/2, Math.floor(nTop) + nRoundedHeight/2, nRoundedHeight/2, 0, 2 * Math.PI);
+						_oContext.fill();
+						_oContext.closePath();
+						
+					}
 				}
 			}
 
@@ -529,6 +545,7 @@ var QRCode;
 	 * @param {Number} [vOption.width=256]
 	 * @param {Number} [vOption.height=256]
 	 * @param {String} [vOption.colorDark="#000000"]
+	 * @param {String} [vOption.type="rect"]
 	 * @param {String} [vOption.colorLight="#ffffff"]
 	 * @param {QRCode.CorrectLevel} [vOption.correctLevel=QRCode.CorrectLevel.H] [L|M|Q|H]
 	 */
@@ -539,7 +556,8 @@ var QRCode;
 			typeNumber : 4,
 			colorDark : "#000000",
 			colorLight : "#ffffff",
-			correctLevel : QRErrorCorrectLevel.H
+			correctLevel : QRErrorCorrectLevel.H,
+			type : "rect"
 		};
 
 		if (typeof vOption === 'string') {
