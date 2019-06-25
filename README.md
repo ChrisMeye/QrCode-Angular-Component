@@ -1,4 +1,4 @@
-# QrCode Angular Component with images (not finished work in progress)
+# QRCode Angular Component with images (not finished work in progress)
 <img src="readme_images/example 2.png" alt="logo" width="200px" align="right"/>
 
 ### Description
@@ -7,7 +7,7 @@ This is a simple component you can include in your project which helps you with 
 
 ## Getting started
 ### Installation
-This is the first a QrCode Component for Angular.
+This is the first a QRCode Component for Angular.
 
 Download the component and copy the files in the module you need. Usually it's Angular_Project->src->app
 
