@@ -7,9 +7,9 @@ This is a simple component you can include in your project which helps you with 
 
 ## Getting started
 ### Installation
-This is the first run of a QrCode Component for Angular.
+This is the first a QrCode Component for Angular.
 
-Copy the component in the module you need. Usually it's Angular_Prohect->src->app
+Download the component and copy the files in the module you need. Usually it's Angular_Project->src->app
 
 
 Insert the import in the app.module.ts -> in the example it could be like:
