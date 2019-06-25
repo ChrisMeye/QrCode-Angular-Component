@@ -7,7 +7,7 @@ This is a simple component you can include in your project which helps you with 
 
 ## Getting started
 ### Installation
-This is the first a QRCode Component for Angular.
+This is a basic QRCode generating component for Angular2+.
 
 Download the component and copy the files in the module you need. Usually it's Angular_Project->src->app
 
